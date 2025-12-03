@@ -1,0 +1,31 @@
+Normalized 1 (N1 pala ini.)
+----table:products-----
+id:22, name: Manzana 16, category: Mobile phones, class: Premium, price: 80,000, specs: 512 ROM
+id:25, name: Manzana 16, category: Mobile phones, class: Premium, price: 50,000, specs: 256 ROM
+id:16, name: Manzana ideal, category: Mobile phones, class: A series, price: 15,999, specs: 256 ROM
+id:15, name: Manzana 13, category: Mobile phones, class: A series, price: 8,999, specs: 256 ROM
+id:13, name: Manzana 13, category: Mobile phones, class: A series, price: 7,999, specs: 64 ROM
+id:05, name: Manzana E, category: Mobile phones, class: E series, price: 4,555, specs: 64 ROM
+id:04, name: Manzana E2, category: Mobile phones, class: E series, price: 3,999, specs: 64 ROM
+
+id:50, name: Manzana above, category: Laptop, class: day series, price: 30,000, specs: 512 ROM
+id:55, name: Manzana above gaming, category: Laptop, class: Performance, price: 99,999, specs: 512 ROM
+id:56, name: Manzana above work, category: Laptop, class: workstation, price: 50,000, specs: 512 ROM
+id:39, name: Manzana power, category: System-unit, class: workstation, price: 75,000, specs: 256 ROM
+id:40, name: Manzana power, category: System-unit, class: workstation, price: 79,999, specs: 512 ROM
+
+---table:orders---
+id:1, name: Dave, product: 22, contact: 0933-124-4563, purchase: acquired, accID: 1, email: Daveiswell@email.com, address: Sesame street
+id:4, name: Dave, product: 04, contact: 0933-124-4563, purchase: acquired, accID: 2, email: Daveiswell@email.com, address: Sesame street
+id:3, name: john ali, product: 50, contact: 0934-173-8485, purchase: acquired, accID: 3, email: MalariaBad@email.com, address: brgy 91 maupay
+id:5, name: jose Protacio rizal, product: 55, contact: 0911-111-2222, purchase: reserved, accID: 5, email: Rizzal@email.com, address: Bagumbayan field Luneta
+id:2, name: Trixie torta, product: 13, contact: 0983-911-911, purchase: acquired, accID: 4, email: hello2349A@email.com, address: cebu-Pacific ocean
+
+---tables:users---
+id: 1, password: ^$21-33j, status: user, name: Dave
+id: 2, password: hj_395dD, status: user, name: john
+id: 3, password: 48`*jdwW, status: user, name: john ali
+id: 4, password: kKN3-_83, status: user, name: Trixie torta
+id: 5, password: Bspa4u*(, status: user, name: jose Protacio rizal
+id: 6, password: N73_-231, status: Admin, name: prag
+id: 7, password: 74*4^^3h, status: Admin, name: master
