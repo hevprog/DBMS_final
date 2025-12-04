@@ -19,9 +19,10 @@ class Login extends Database
             //select user from db
             $sql = "SELECT * FROM users WHERE name = :username";
             $stmt = parent::connect()->prepare($sql);
+
             $stmt->bindParam(':username', $this->userName);
             $stmt->execute();
-
+            
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             //check if the user is in the db
