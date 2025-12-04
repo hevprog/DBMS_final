@@ -1,7 +1,12 @@
 # SQL
 
+- Delete existing database if you want to update
 ```sql
+    DROP DATABASE IF EXISTS ecommerce_db;
+```
 
+- Create Database and tables
+```sql
 CREATE DATABASE ecommerce_db
 
 CREATE TABLE users (
