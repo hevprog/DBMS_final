@@ -43,7 +43,7 @@ class Register extends Database
         }
         catch(PDOException $e)
         {
-            echo "ERROR  ";
+            echo "ERROR " . $e->getMessage();
             return null;
         }
         
@@ -57,5 +57,7 @@ class Register extends Database
         }
         return true;
     }
+
+    //TO-DO: methods for validation and security checks
    
 }

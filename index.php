@@ -27,8 +27,3 @@
     </div>
 </body>
 </html>
-
-<?php
-//username = johndoe
-//password = SecurePass123!
-?>

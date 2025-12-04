@@ -47,3 +47,5 @@ inin na mga folders tas php files kay placeholder pala, puydi pa ini mag bago de
 
 #### NOTE:
 - The database and table may be updated or changed in the future, if that does happen, make sure to delete your current database and follow step 3 again.
+
+- Ignore Dockerfile and docker-compose.yml
