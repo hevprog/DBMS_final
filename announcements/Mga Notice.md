@@ -8,6 +8,8 @@ inin na mga folders tas php files kay placeholder pala, puydi pa ini mag bago de
 
 - auth/ - for authentication and authorization page
 
+- Classes/ - for classes
+
 - config/ - Database connection class
 
 - documentation/ - the folder to place our documentations
