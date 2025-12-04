@@ -3,10 +3,9 @@
 if ($_SERVER["REQUEST_METHOD"] === "POST")
 {
     //like #include <>
-    require_once "../config/Database.php";
-    require_once "../Classes/LoginClass.php";
-    require_once "../includes/functions.php";
-
+    require_once __DIR__ . "/../config/Database.php";
+    require_once __DIR__ . "/../Classes/LoginClass.php";
+    require_once __DIR__ . "/../includes/functions.php";
     $userName = $_POST["username"];
     $password = $_POST["pass"];
 
