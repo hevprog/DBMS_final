@@ -40,7 +40,7 @@ inin na mga folders tas php files kay placeholder pala, puydi pa ini mag bago de
 
 ## How to get started:
 
-1. Follow ["Git Guidelines"](https://github.com/hevprog/DBMS_final/blob/main/announcements/Git%20Guidelines.md) to clone the repository
+1. Follow ["Git Guidelines"](https://github.com/hevprog/DBMS_final/blob/main/announcements/Git%20Guidelines.md) to clone the repository in Xamp/htdocs
 2. Open XAMPP and start Apache and MySQL
 3. Open localhost/phpmyadmin and go to [sql-queries/queries.md](sql-queries/queries.md) to create the database and tables
 4. create a new branch and start working from there.

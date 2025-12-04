@@ -17,6 +17,6 @@
 </html>
 
 <?php
-
-
+//username = johndoe
+//password = SecurePass123!
 ?>
