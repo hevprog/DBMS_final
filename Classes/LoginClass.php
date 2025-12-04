@@ -17,7 +17,7 @@ class Login extends Database
         try
         {
             //select user from db
-            $sql = "SELECT * FROM users WHERE name = :username";
+            $sql = "SELECT * FROM users WHERE username = :username";
             $stmt = parent::connect()->prepare($sql);
             $stmt->bindParam(':username', $this->userName);
             $stmt->execute();
@@ -31,7 +31,7 @@ class Login extends Database
             }
 
             //verify the password hash
-            if(password_verify($this->password,$user['password']))
+            if(password_verify($this->password,$user['password_hash']))
             {
                 return true;
             }

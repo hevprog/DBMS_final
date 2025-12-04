@@ -8,6 +8,8 @@
 <body>
     This is what u will see when after u login as a customer
     <button>Okay i am customer</button>
+    <br>
+    <button  onclick="window.location.href='http://localhost:8000'">back</button>
     <?php
     ?>
 </body>
