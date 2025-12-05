@@ -23,27 +23,27 @@ CREATE TABLE users (
 - Creating the table products, class and category
 CREATE TABLE class (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    class varchar(255) NOT NULL
+    class_name varchar(255) NOT NULL
 );
 CREATE TABLE category (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    category varchar(255) NOT NULL
+    category_name varchar(255) NOT NULL
 );
 
 CREATE TABLE products (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     category_id INT NOT NULL,
-    class_id int NOT NULL,
-    price float NOT NULL CHECK (price >=0),
-    stock INT NOT NULL CHECK (stock >= 0) DEFAULT 0,
-    ROM int,
+    class_id INT NOT NULL,
+    price FLOAT NOT NULL,
+    stock INT NOT NULL,
+    ROM INT,
     RAM int,
 
     FOREIGN KEY (category_id) REFERENCES category(id),
     FOREIGN KEY (class_id) REFERENCES class(id),
 
-    INDEX idx_name (name)
+    INDEX idx_name (name),
     INDEX idx_category (category_id),
     INDEX idx_class (class_id),
     INDEX idx_price (price)
