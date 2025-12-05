@@ -27,7 +27,7 @@ class Register extends Database
 
         try
         {
-            $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
+            $hashedPassword = password_hash($this->password, PASSWORD_BCRYPT);
 
             #create a query and then bind the values
             $sql = "INSERT INTO users (password, name, email) VALUES(:password, :name, :email);";

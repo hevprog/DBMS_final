@@ -6,9 +6,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
     require_once __DIR__ . "/../config/Database.php";
     require_once __DIR__ . "/../Classes/RegisterClass.php";
 
-    $password = $_POST["pass"];
-    $userName = $_POST["username"];
-    $email = $_POST["email"];
+    $password = htmlspecialchars($_POST["pass"]);
+    $userName = htmlspecialchars($_POST["username"]);
+    $email = htmlspecialchars($_POST["email"]);
 
     $reg = new Register($password, $userName, $email);
 
