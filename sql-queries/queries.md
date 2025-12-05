@@ -20,4 +20,26 @@ CREATE TABLE users (
     INDEX idx_username (username)
 );
 
+- Creating the table products, class and category
+CREATE TABLE class (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    class varchar(255) NOT NULL
+);
+CREATE TABLE category (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    category varchar(255) NOT NULL
+);
+
+CREATE TABLE products (
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    category INT NOT NULL,
+    class int NOT NULL,
+    price int NOT NULL,
+    ROM int NOT NULL,
+    RAM int NOT NULL,
+
+    FOREIGN KEY (category) REFERENCES category(id),
+    FOREIGN KEY (class) REFERENCES class(id)
+);
 ```

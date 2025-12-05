@@ -1,0 +1,23 @@
+proposed N2 table (for product table) *probaly also an N3 na, kay an category and class is very dynamic
+
+----table:products----
+id:1, name: Manzanas 16, category: 1, class: 1, price: 80,000, ROM: 512, RAM: 12
+id:2, name: Manzanas power, category: 3, class: 5, price: 75,000, ROM: 256, RAM: 16
+id:3, name: Manzanas E, category: 1, class: 3, price: 4,555, ROM: 64, RAM: 6
+id:4, name: Manzanas power, category: 3, class: 6, price: 79,999, ROM: 512, RAM: 16
+
+----table:category---
+id:1, category: Mobile phones
+id:2, category: Laptops
+id:3, category: System unit
+id:4, category: Input devices
+id:5, category: Output devices
+
+----table:class----
+id:1, class: Premium
+id:2, class: A series
+id:3, class: E series
+id:4, class: Day series
+id:5, class: Sweet Performance
+id:6, class: I-need
+id:7, class: Superman 2025 limited edition
