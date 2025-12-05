@@ -10,10 +10,10 @@ id:05, name: Manzanas E, category: Mobile phones, class: E series, price: 4,555,
 id:04, name: Manzanas E2, category: Mobile phones, class: E series, price: 3,999, ROM: 64, RAM: 2
 
 id:50, name: Manzanas above, category: Laptop, class: day series, price: 30,000, ROM: 512, RAM: 8
-id:55, name: Manzanas above gaming, category: Laptop, class: Performance, price: 99,999, ROM: 512, RAM: 16
-id:56, name: Manzanas above work, category: Laptop, class: workstation, price: 50,000, ROM: 512, RAM: 8
-id:39, name: Manzanas power, category: System-unit, class: workstation, price: 75,000, ROM: 256, RAM: 16
-id:40, name: Manzanas power, category: System-unit, class: workstation, price: 79,999, ROM: 512, RAM: 16
+id:55, name: Manzanas above gaming, category: Laptop, class: Sweet Performance, price: 99,999, ROM: 512, RAM: 16
+id:56, name: Manzanas above work, category: Laptop, class: Sweet Performance, price: 50,000, ROM: 512, RAM: 8
+id:39, name: Manzanas power, category: System-unit, class: I-need, price: 75,000, ROM: 256, RAM: 16
+id:40, name: Manzanas power, category: System-unit, class: I-need, price: 79,999, ROM: 512, RAM: 16
 
 ---table:orders---
 id:1, name: Dave, product: 22, contact: 0933-124-4563, purchase: acquired, address: Sesame street

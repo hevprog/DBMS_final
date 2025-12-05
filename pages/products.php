@@ -9,9 +9,6 @@
     This is what u will see when after u login as a customer
     <button>Okay i am customer</button>
     <br>
-    <button  onclick="window.location.href='http://localhost:8000'">back</button>
-    <br>
-    
     <form action="products.php" method="post">
         <button type="submit" name="back">Or this button</button>
         <br>
@@ -22,7 +19,8 @@
 </html>
 
 <?php
-    //Button does not seem to work on my computer
+    //Button does not seem to work on my computer.
+    //I figured probaby a mismatch of the port of switchpage(default port = 8000)
     require_once __DIR__ . "/../includes/functions.php";
 
     if(isset($_POST['back']))
