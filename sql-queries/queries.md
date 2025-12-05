@@ -36,8 +36,8 @@ CREATE TABLE products (
     category INT NOT NULL,
     class int NOT NULL,
     price int NOT NULL,
-    ROM int NOT NULL,
-    RAM int NOT NULL,
+    ROM int,
+    RAM int,
 
     FOREIGN KEY (category) REFERENCES category(id),
     FOREIGN KEY (class) REFERENCES class(id)
