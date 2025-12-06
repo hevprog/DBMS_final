@@ -22,11 +22,26 @@
                     echo '<label for="'.$col["category_name"].'">'.$col["category_name"].'</label><br>';
                 }
             }else{
-                echo "NO categories found";
+                echo "NO categories found<br>";
             }
         ?>
-
-        <button type="submit">click me</button>
+        Choose class ID <br>
+        <?php
+            require_once __DIR__."/../config/database.php";
+            require_once __DIR__."/../admin/manage.php";
+            $manage = new manage();
+            $class = $manage->query("SELECT class_name FROM class");
+            if($class != false){
+                foreach($class as $col){
+                    echo '<input type="radio" id="'.$col["class_name"].
+                    '" name="'.$col["class_name"].'" value="'.$col["class_name"].'">';
+                    echo '<label for="'.$col["class_name"].'">'.$col["class_name"].'</label><br>';
+                }
+            }else{
+                echo "NO classes found<br>";
+            }
+        ?>
+        <button type="submit">INSERT</button>
     </form>
     
 </body>
