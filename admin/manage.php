@@ -5,7 +5,7 @@
     
     
     function add_product($product_name, $category_id, $class_id,$price,$stock,$ROM,$RAM){
-        $sql = "insert into product(name,category_id,
+        $sql = "insert into products(name,category_id,
         class_id,price,stock,ROM,RAM) values( :name, :category_id, :class_id,
         :price, :stock, :ROM, :RAM);";
         
@@ -20,10 +20,10 @@
         $stmt->bindParam(":ROM", $ROM, PDO::PARAM_INT);
         $stmt->bindParam(":RAM", $RAM, PDO::PARAM_INT);
 
-        $stmt->execute();
-        return ($stmt == false)? false:true;
+        
+        return $stmt->execute();
     }
-    function query($sql){ //DO NOT LET IT USER PAG INPUT HAN PARAM :)
+    function query($sql){ //DO NOT LET IT USER PAG INPUT HAN PARAM :) only hard coded sql statments.
         $database = parent::connect();
         $stmt = $database->prepare($sql);
         return ($stmt->execute())?$stmt->fetchAll(PDO::FETCH_ASSOC):0;
