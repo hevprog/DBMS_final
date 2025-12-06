@@ -36,6 +36,17 @@
         </div>
 
         <div>
+            <select name="sort_by">
+                <option value="price">Price</option>
+                <option value="RAM">RAM</option>
+                <option value="ROM">ROM</option>
+            </select>
+
+            <select name="order">
+                <option value="ASC">Low to High</option>
+                <option value="DESC">High to Low</option>
+            </select>
+
             <table border="5" cellpadding="20">
             <tr>
                 <th>Product name</th>
@@ -50,8 +61,10 @@
                     if(isset($_POST['cat-btn']))
                     {
                         $categoryID = $_POST['category'];
+                        $sort_by = $_POST['sort_by'] ?? 'price';
+                        $order = $_POST['order'] ?? 'ASC';
                         $products = new Products();
-                        $productsList = $products->getProductsbyCategory($categoryID);        
+                        $productsList = $products->getProductsbyCategory($categoryID, $sort_by, $order);        
                         
                         if($productsList && count($productsList) > 0)
                         { 
@@ -77,9 +90,6 @@
                 
             </table>
         </div>
-
-
-
 
         <hr>
         <button type="submit" name="cart">Cart</button>

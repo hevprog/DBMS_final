@@ -4,13 +4,17 @@ class Products extends Database //this is a product, which can be used by both a
 {
 
     
-    public function getProductsbyCategory($categoryID)
+    public function getProductsbyCategory($categoryID, $sort_by = null, $order = "ASC")
     {
         try
         {
-            $sql = "SELECT * FROM products WHERE category_id = :categoryID";
-            $stmt = parent::connect()->prepare($sql);
+            $sql = "SELECT * FROM products WHERE category_id = :categoryID"; //default sql query
 
+            if($sort_by)
+            {
+                $sql .= " ORDER BY " . $sort_by . " " . $order;
+            }
+            $stmt = parent::connect()->prepare($sql);
             $stmt->bindParam(':categoryID', $categoryID);
             $stmt->execute();
             
