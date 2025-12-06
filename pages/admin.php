@@ -6,8 +6,28 @@
     <title>Manager</title>
 </head>
 <body>
-    this is what you see if you are a manager or administrator.
-    <button>Okay i am Administrator</button>
+   <form method="post" action="../admin/manage.php">
+        <input type="hidden" name="is_pressed" value="true">
+        Product Name: <input type="text" name="Product_name"><br>
+        Choose categories<br>
+        <?php
+            require_once __DIR__."/../config/database.php";
+            require_once __DIR__."/../admin/manage.php";
+            $manage = new manage();
+            $categories = $manage->query("SELECT category_name FROM category");
+            if($categories != false){
+                foreach($categories as $col){
+                    echo '<input type="radio" id="'.$col["category_name"].
+                    '" name="'.$col["category_name"].'" value="'.$col["category_name"].'">';
+                    echo '<label for="'.$col["category_name"].'">'.$col["category_name"].'</label><br>';
+                }
+            }else{
+                echo "NO categories found";
+            }
+        ?>
+
+        <button type="submit">click me</button>
+    </form>
     
 </body>
 </html>

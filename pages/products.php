@@ -15,6 +15,10 @@
         <hr>
         <button type="submit" name="cart">Cart</button>
     </form>
+    <div>
+        <img src="../assets/images/500x500Mobile-placeholder.png">
+        <img src="../assets/images/500x500Mobile-placeholder.png">
+    </div>
 </body>
 </html>
 
