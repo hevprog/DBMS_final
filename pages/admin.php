@@ -18,7 +18,7 @@
             if($categories != false){
                 foreach($categories as $col){
                     echo '<input type="radio" id="'.$col["category_name"].
-                    '" name="'.$col["category_name"].'" value="'.$col["category_name"].'">';
+                    '" name= category" value="'.$col["category_name"].'">';
                     echo '<label for="'.$col["category_name"].'">'.$col["category_name"].'</label><br>';
                 }
             }else{
@@ -34,7 +34,7 @@
             if($class != false){
                 foreach($class as $col){
                     echo '<input type="radio" id="'.$col["class_name"].
-                    '" name="'.$col["class_name"].'" value="'.$col["class_name"].'">';
+                    '" name=class value="'.$col["class_name"].'">';
                     echo '<label for="'.$col["class_name"].'">'.$col["class_name"].'</label><br>';
                 }
             }else{
