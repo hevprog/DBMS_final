@@ -36,7 +36,7 @@
         </div>
 
         <div>
-            <table border="1" cellpadding="10">
+            <table border="5" cellpadding="20">
             <tr>
                 <th>Product name</th>
                 <th>class</th>
@@ -46,30 +46,35 @@
                 <th>ROM</th>
             </tr>
 
-            <?php 
-                if(isset($_POST['cat-btn']))
-                {
-                    $categoryID = $_POST['category'];
-                    $products = new Products();
-                    $productsList = $productObj->getProductsbyCategory($categoryID);        
-                    
-                    if($productsList && count($productsList) > 0)
-                    { ?>
-                    <tr>
-                        <td><?= $products['name '] ?></td>
-                        <td><?= $products['class_id '] ?></td>
-                        <td><?= $products['price '] ?></td>
-                        <td><?= $products['stock'] ?></td>
-                        <td><?= $products['RAM'] ?></td>
-                        <td><?= $products['ROM'] ?></td>
-                    </tr>
-            <?php  }
-                    else
+                <?php 
+                    if(isset($_POST['cat-btn']))
                     {
-                        echo "No products found :(";
-                    }
-                } >?
+                        $categoryID = $_POST['category'];
+                        $products = new Products();
+                        $productsList = $products->getProductsbyCategory($categoryID);        
+                        
+                        if($productsList && count($productsList) > 0)
+                        { 
+                            foreach($productsList as $product)
+                            { ?>
+                                <tr>
+                                <td><?= $product['name'] ?></td>
+                                <td><?= $product['class_id'] ?></td>
+                                <td><?= $product['price'] ?></td>
+                                <td><?= $product['stock'] ?></td>
+                                <td><?= $product['RAM'] ?></td>
+                                <td><?= $product['ROM'] ?></td>
+                                </tr>
+                            <?php }
 
+                        }
+                        else
+                        {
+                            echo "<tr><td colspan='6'>No products found :(</td></tr>";
+                        }
+
+                    }  ?>
+                
             </table>
         </div>
 
