@@ -1,6 +1,8 @@
 <?php 
+    session_start();
     require_once __DIR__."/../config/database.php";
     require_once __DIR__."/../admin/manage.php";
+    require_once __DIR__."/../includes/functions.php";
 ?>
 <?php
     $isUpdate = (isset($_GET["update"]) && $_GET["update"]==1);
@@ -18,6 +20,14 @@
     function getDeleteStatus(){
         return isset($_GET["deleteStat"])&&$_GET["deleteStat"]=="1";
     }
+    if(isset($_POST['log-out']))
+    {
+        if (!headers_sent()) 
+        {
+            session_destroy();
+            redirectToPage('../index.php');
+        } 
+    }
 ?>
 
 
@@ -31,6 +41,12 @@
     
 </head>
 <body>
+    <div>
+        <form method="post" action=<?= $_SERVER['PHP_SELF'] ?>>
+            <input type="hidden" name="log-out" value="1">
+            <button type="submit" value="Log out">Logout</button>
+        </form>
+    </div>
     <div>
         <form method="post" action="../admin/dashboard.php">
             <input type="hidden" name="is_pressed_insert" value="true">
@@ -86,7 +102,7 @@
             <input type="hidden" name="mode" value="DELETE">
             <br>Product ID<input type="number" name="product_id">
             <input type="submit" value="Delete">
-            <?=  (isset($_GET["deleteStat"])) ?(getDeleteStatus())? "<p>Deletion success</p>":"<p>Unsuccessful deletion</p>":""?>
+            <?=  (isset($_GET["deleteStat"])) ?((getDeleteStatus())? "<p>Deletion success</p>":"<p>Unsuccessful deletion</p>"):""?>
             <table>
                 <tr>
                 <th>Product_ID</th><th>Product_name</th><th>class</th><th>category</th>
