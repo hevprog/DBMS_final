@@ -29,5 +29,13 @@
     <div>
         <h1>THIS IS A TEST IF DEPLOYMENT AUTOMATION WORKS!!!</h1>
     </div>
+
+    <div class="test">
+        <form>
+            <input type="text" name="username" placeholder="Enter Name:">
+            <input type="password" name="pass" placeholder="Enter Password:">
+            <input type="email" name="email" placeholder="Enter Email:">
+            <button>Register</button>
+        </form>
 </body>
 </html>
