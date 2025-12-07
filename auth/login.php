@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST")
 {
     //like #include <>
@@ -7,23 +7,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
     require_once __DIR__ . "/../Classes/LoginClass.php";
     require_once __DIR__ . "/../includes/functions.php";
 
-    $userName = htmlspecialchars($_POST["username"]);
-    $password = htmlspecialchars_decode($_POST["pass"]);
+    $username = htmlspecialchars($_POST["username"]);
+    $password = htmlspecialchars($_POST["pass"]);
 
-    $login = new Login($userName, $password);
+    $login = new Login($username, $password);
 
     if($login->authenticateUser())
     {
 
         if($login->getUserStatus()['status'] == "customer")
         {
+            $_SESSION["username"] = $username;
             redirectToPage("../pages/products.php");
-	    exit();
+	        exit();
         }
         else
         {
             redirectToPage("../pages/admin.php");
-	    exit();
+	        exit();
         }
 
     }
