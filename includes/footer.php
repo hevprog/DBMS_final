@@ -1,1 +1,0 @@
-<!--mga navigation buttons, etc.

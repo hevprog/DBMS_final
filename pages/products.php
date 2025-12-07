@@ -15,11 +15,9 @@
 </head>
 <body>
     This is what u will see when after u login as a customer
-    <button>Okay i am customer</button>
-    <br>
     <div>
         <form action="products.php" method="post">
-        <button type="submit" name="back">button</button>
+        <button type="submit" name="log-out">Log Out</button>
         <br>
         <div>
             <label for="categories">Choose a category:</label>
@@ -99,10 +97,11 @@
 </html>
 
 <?php
-    if(isset($_POST['back']))
+    if(isset($_POST['log-out']))
     {
         if (!headers_sent()) 
         {
+            session_destroy();
             redirectToPage('../index.php');
         } 
     }

@@ -1,3 +1,9 @@
+<?php 
+    session_start();
+    require_once __DIR__ . "/includes/functions.php";
+    include("./includes/header.html");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,15 +22,13 @@
     </div>
     <br>
     <br>
-    <br>
-    <div class="register-form">
-        <form action="auth/register.php" method="post">
-            <input type="text" name="username" placeholder="Enter Name:">
-            <input type="password" name="pass" placeholder="Enter Password:">
-            <input type="email" name="email" placeholder="Enter Email:">
-            <button>Register</button>
+        <form action="index.php" method="post">
+            <button type="submit" name="registration">Register</button>
         </form>
-    </div>
+    <br>
+    <br>
+    <hr>
+    <h1>$_SERVER Keys and Values, for debuging</h1>
 
     <div>
         <h1>THIS IS A TEST IF DEPLOYMENT AUTOMATION WORKS!!!</h1>
@@ -39,3 +43,21 @@
         </form>
 </body>
 </html>
+<?php
+
+    include("./includes/footer.html");
+
+    if($_SERVER["REQUEST_METHOD"] === "POST")
+    {
+        if(isset($_POST['registration']))
+        {
+            redirectToPage("auth/register.php");
+            exit();
+        }
+    }
+
+    foreach($_SERVER as $key => $value)
+    {
+        echo"{$key} = {$value} <br><br>";
+    }
+?>
