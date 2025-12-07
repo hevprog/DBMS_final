@@ -1,6 +1,5 @@
 ## SQL Queries for address, orders and items
 
-
 ```php
 CREATE TABLE address(
     address_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -42,6 +41,18 @@ CREATE TABLE order_items (
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id),
     INDEX idx_order (order_id),
+    INDEX idx_product (product_id)
+);
+
+CREATE TABLE cart (
+    cart_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL CHECK (quantity > 0),
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
+    INDEX idx_user_cart (user_id),
     INDEX idx_product (product_id)
 );
 

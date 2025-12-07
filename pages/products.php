@@ -1,7 +1,24 @@
-<?php 
+<?php
+    session_start();
     require_once __DIR__ . "/../config/database.php";
     require_once __DIR__ . "/../Classes/ProductClass.php";
     require_once __DIR__ . "/../includes/functions.php";
+
+    if(isset($_POST['log-out']))
+    {
+        if (!headers_sent()) 
+        {
+            session_destroy();
+            redirectToPage('../index.php');
+        } 
+    }
+    elseif(isset($_POST['cart']))
+    {
+        if (!headers_sent()) 
+        {
+            redirectToPage('cart.php');
+        } 
+    }
 
 ?>
 
@@ -75,6 +92,14 @@
                                 <td><?= $product['stock'] ?></td>
                                 <td><?= $product['RAM'] ?></td>
                                 <td><?= $product['ROM'] ?></td>
+
+                                <td>
+                                    <form action="addToCart.php" method="post">
+                                        <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                        <input type="number" name="quantity" value="1" min="1" max="<?= $product['stock'] ?>">
+                                        <button type="submit" name="add_to_cart">Add to Cart</button>
+                                    </form>
+                                </td>
                                 </tr>
                             <?php }
 
@@ -95,23 +120,3 @@
     </div>
 </body>
 </html>
-
-<?php
-    if(isset($_POST['log-out']))
-    {
-        if (!headers_sent()) 
-        {
-            session_destroy();
-            redirectToPage('../index.php');
-        } 
-    }
-    elseif(isset($_POST['cart']))
-    {
-        if (!headers_sent()) 
-        {
-            redirectToPage('cart.php');
-        } 
-    }
-
-
-?>
