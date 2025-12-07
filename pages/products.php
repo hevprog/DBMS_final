@@ -70,7 +70,7 @@
                             { ?>
                                 <tr>
                                 <td><?= $product['name'] ?></td>
-                                <td><?= $product['class_id'] ?></td>
+                                <td><?= $product['class_name'] ?></td>
                                 <td><?= $product['price'] ?></td>
                                 <td><?= $product['stock'] ?></td>
                                 <td><?= $product['RAM'] ?></td>
