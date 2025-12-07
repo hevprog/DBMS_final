@@ -29,9 +29,20 @@ CREATE TABLE orders(
     INDEX idx_user_orders (user_id),
     INDEX idx_order_date (order_date),
     INDEX idx_status (status),
-    INDEX idx_total_amount (total_amount)
 
 );
 
+CREATE TABLE order_items (
+    order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL CHECK (quantity > 0),
+    unit_price DECIMAL(10, 2) NOT NULL CHECK (unit_price >= 0),
+    subtotal_price DECIMAL(10, 2) NOT NULL CHECK (subtotal_price >= 0),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
+    INDEX idx_order (order_id),
+    INDEX idx_product (product_id)
+);
 
 ```
