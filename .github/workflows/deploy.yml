@@ -21,7 +21,7 @@ jobs:
           port: 22
           script: |
             echo "Starting deployment..."
-            cd /var/www/html
+            cd /home/kentandrewparejas/DBMS_final
             
             echo "Pulling latest changes..."
             git pull origin main --rebase
