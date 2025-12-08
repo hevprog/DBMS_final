@@ -12,7 +12,7 @@ perform CRUD operations on table products, orders and cart table, and lastly can
 
 ## Front-end:
 Establish a well defined and appealing page with fonts, images and layouting, considering 
-(IMPORTANT: Responsiveness to diffenrent devices and Apply basic stylying with CSS)
+(IMPORTANT: Responsiveness to different devices and Apply basic stylying with CSS)
 
 1.) John Raymark Binghoy
 
