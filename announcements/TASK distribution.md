@@ -29,9 +29,6 @@ involves producing the ER diagram and documenting the proposed tables from N1-N3
 2.) Henry Singzon
 
 # Deployment
-Concerning about security, data integrity and database handling with users and admins.
-Producing modular code and classes for backend and frontend.
+Cloud is deployed...
 
 1.) Kent Parejas
-
-2.) Henry Singzon
