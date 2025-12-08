@@ -61,7 +61,6 @@
                 redirectToPage("/../pages/admin.php?reset=0");
             }
             break;
-            
 
     }
 }
