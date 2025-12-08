@@ -31,7 +31,7 @@
 ?>
 
 
-<!---->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,6 +45,9 @@
         <form method="post" action=<?= $_SERVER['PHP_SELF'] ?>>
             <input type="hidden" name="log-out" value="1">
             <button type="submit" value="Log out">Logout</button>
+        </form>
+        <form action="admin_orders.php">
+            <button type="submit">Go to Manage orders</button>
         </form>
     </div>
     <div>
