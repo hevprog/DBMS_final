@@ -1,6 +1,6 @@
 primary roles are assign to each one.
 
-##Back-end:
+## Back-end:
 Ensures that the website can authenticate a user,
 perform CRUD operations on table products, orders and cart table, and lastly can search and filter.
 
@@ -8,7 +8,7 @@ perform CRUD operations on table products, orders and cart table, and lastly can
 2.) Nico Babaylan
 3.) Kent Parejas
 
-##Front-end:
+## Front-end:
 Establish a well defined and appealing page with fonts, images and layouting, considering 
 (IMPORTANT: Responsiveness to diffenrent devices and Apply basic stylying with CSS)
 
@@ -16,14 +16,14 @@ Establish a well defined and appealing page with fonts, images and layouting, co
 2.) Michael Pacheco
 3.) Ryan Tablate (versatile role)
 
-##Documentation 
+## Documentation 
 One of the project requirements is documentation
 involves producing the ER diagram and documenting the proposed tables from N1-N3.
 
 1.) Ryan Tablate (versatile role)
 2.) Henry Singzon
 
-#Deployment
+# Deployment
 Concerning about security, data integrity and database handling with users and admins.
 Producing modular code and classes for backend and frontend.
 
