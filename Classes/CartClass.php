@@ -14,7 +14,7 @@ class Cart extends Database
         if($this->isInCart($userId, $productId))
         {
             try{
-                $sql = "UPDATE `cart` SET `quantity`= quantity + :Q WHERE product_Id = :product_ID AND user_id = :user_ID;";
+                $sql = "UPDATE cart SET quantity= quantity + :Q WHERE product_Id = :product_ID AND user_id = :user_ID;";
                 $stmt = parent::connect()->prepare($sql);
 
                 $stmt->bindParam(':Q', $quantity);
@@ -32,7 +32,7 @@ class Cart extends Database
         else
         {
             try{
-                $sql = "INSERT INTO `cart`(`user_id`, `product_id`, `quantity`) VALUES (:user_ID, :product_ID, :Q);";
+                $sql = "INSERT INTO cart(user_id, product_id, quantity) VALUES (:user_ID, :product_ID, :Q);";
                 $stmt = parent::connect()->prepare($sql);
 
                 $stmt->bindParam(':user_ID', $userId);
@@ -50,11 +50,34 @@ class Cart extends Database
         return false;
     }
 
+    public function getCartItems($userId)
+    {
+        try
+        {               
+            $sql = "SELECT cart.cart_id, cart.quantity, products.product_id, products.name, products.price,
+            products.stock, products.ROM, products.RAM  FROM cart JOIN products ON cart.product_id = products.product_id
+            WHERE cart.user_id = :user_ID";
+
+            $stmt = parent::connect()->prepare($sql);
+            $stmt->bindParam(':user_ID', $userId);
+            $stmt->execute();
+            
+            $cart_orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $cart_orders ? $cart_orders : null;
+        }
+        catch(PDOException $e)
+        {
+            echo "ERROR " . $e->getMessage();
+            return null;
+        }
+    }
+
+    //Helper Methods
     private function isInStock($productId, $quantity)
     {
         try
         {               
-            $sql = "SELECT `stock` FROM `products` WHERE product_id = :product_ID;";
+            $sql = "SELECT stock FROM products WHERE product_id = :product_ID;";
             $stmt = parent::connect()->prepare($sql);
 
             $stmt->bindParam(':product_ID', $productId);
@@ -74,7 +97,7 @@ class Cart extends Database
     {
         try
         {               
-            $sql = "SELECT `product_id` FROM `cart` WHERE product_id = :product_ID AND user_id = :user_ID;";
+            $sql = "SELECT product_id FROM cart WHERE product_id = :product_ID AND user_id = :user_ID;";
             $stmt = parent::connect()->prepare($sql);
 
             $stmt->bindParam(':product_ID', $productId);

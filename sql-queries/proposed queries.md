@@ -27,8 +27,7 @@ CREATE TABLE orders(
     FOREIGN KEY (address_id) REFERENCES address(address_id),
     INDEX idx_user_orders (user_id),
     INDEX idx_order_date (order_date),
-    INDEX idx_status (order_status),
-
+    INDEX idx_status (order_status)
 );
 
 CREATE TABLE order_items (
