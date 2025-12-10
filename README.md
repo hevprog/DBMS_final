@@ -13,8 +13,8 @@
 <hr>
 
 ### Core features:
-- [ ] User authentication (login, register, logout)
-- [ ] CRUD for products (admin only)
+- [x] User authentication (login, register, logout)
+- [x] CRUD for products (admin only)
 - [ ] CRUD for cart
 - [ ] Order creation (checkout)
 - [ ] Search & Filtering (by name, by category)
