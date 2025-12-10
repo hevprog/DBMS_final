@@ -46,10 +46,12 @@
             <input type="hidden" name="log-out" value="1">
             <button type="submit" value="Log out">Logout</button>
         </form>
+        <br>
         <form action="admin_orders.php">
             <button type="submit">Go to Manage orders</button>
         </form>
     </div>
+    <br>
     <div>
         <form method="post" action="../admin/dashboard.php">
             <input type="hidden" name="is_pressed_insert" value="true">
@@ -69,7 +71,7 @@
                     echo "No categories found, contact support<br>";
                 }
             ?>
-            Choose class ID <br>
+            <br>Choose class ID <br>
             <?php
                 if($class != false){
                     foreach($class as $col){
