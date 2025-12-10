@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
     require_once __DIR__ . "/../includes/functions.php";
 
     $username = htmlspecialchars($_POST["username"]);
-    $password = htmlspecialchars($_POST["pass"]);
+    $password = htmlspecialchars($_POST["password"]);
 
     $login = new Login($username, $password);
 

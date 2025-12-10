@@ -21,6 +21,12 @@
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
+    <div class="white-rectangle">
+        <div class="logo-header">
+             <img src="assets/images/MANSANAS LOGO 1.jpg" alt="Manzanas Logo with name">
+         </div>
+    </div>
+
     <div class="login-container">
         <div class="logo-section">
             <img src="assets/images/Masanas Logo standalone 1.png" alt="Manzanas Logo" class="logo-icon">
@@ -58,7 +64,7 @@
     </div>
 
     <script>
-        // Redirect to register page
+
         function redirectToRegister() {
             window.location.href = 'auth/register.php';
         }
