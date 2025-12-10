@@ -6,19 +6,18 @@ class Address extends Database
     {
         try
         {               
-            $sql = "SELECT * FROM products WHERE user_id = :userId;";
+            $sql = "SELECT * FROM address WHERE user_id = :userId ORDER BY is_default DESC;";
             $stmt = parent::connect()->prepare($sql);
 
-            $stmt->bindParam(':userId', $userId);
+            $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
             $stmt->execute();
             
-            $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $addresses ?? false;
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         catch(PDOException $e)
         {
-            echo "ERROR " . $e->getMessage();
-            return null;
+            error_log("address fetch error: " . $e->getMessage());
+            return [];
         }
     }
 
@@ -26,7 +25,7 @@ class Address extends Database
     {
         try
         {               
-            $sql = "SELECT * FROM products WHERE user_id = :userId AND is_default = 1;";
+            $sql = "SELECT * FROM address WHERE user_id = :userId AND is_default = 1;";
             $stmt = parent::connect()->prepare($sql);
 
             $stmt->bindParam(':userId', $userId);
@@ -37,8 +36,8 @@ class Address extends Database
         }
         catch(PDOException $e)
         {
-            echo "ERROR " . $e->getMessage();
-            return null;
+            error_log("address fetch error: " . $e->getMessage());
+            return [];
         }
     }
 
@@ -54,7 +53,7 @@ class Address extends Database
         try
         {               
             $sql = "INSERT INTO address (user_id, address_type, street_address, city, province, postal_code, unit_num) 
-            VALUES(:userId, :addressType, :streetAddress, :city, :province, :postalCode, :unitNum);";
+            VALUES (:userId, :addressType, :streetAddress, :city, :province, :postalCode, :unitNum);";
             $stmt = parent::connect()->prepare($sql);
 
             $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
@@ -70,8 +69,8 @@ class Address extends Database
         }
         catch(PDOException $e)
         {
-            echo "ERROR " . $e->getMessage();
-            return null;
+            error_log("error: " . $e->getMessage());
+            return [];
         }
     }
 }
