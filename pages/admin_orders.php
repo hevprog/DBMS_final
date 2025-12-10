@@ -11,35 +11,38 @@ if (isset($_GET["back"]) && $_GET["back"] == 1) {
 $manage = new manage();
 $orders = $manage->get_all_orders();
 $dashboard = $_SERVER['PHP_SELF'];
-$getsearch = '';
+$getsearch = [];
+$getorder =null;
 ?>
 <?php
-    if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["order_mode"])){
-    $order = $_POST["order_mode"];
-    switch($order){
-        case "searchOrd_orderid":
-            $id = autocheckPOST("order_id");
-            if ($id !== false && $id !== "") {
-                $getsearch = $manage->selective_ordersearch($id, false);
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+        if( isset($_POST["order_mode"])){
+            $order = $_POST["order_mode"];
+            switch($order){
+                case "searchOrd_orderid":
+                    $id = autocheckPOST("order_id");
+                    if ($id !== false && $id !== "") {
+                        $getsearch = $manage->selective_ordersearch($id, false);
+                    }
+                    break;
+                case "searchOrd_userid":
+                    $user = autocheckPOST("user_id");
+                    if ($user !== false && $user !== "") {
+                        $getsearch = $manage->selective_ordersearch($user, true);
+                    }
+                    break;
+                case "searchOrd_status":
+                    $status = autocheckPOST("order_status");
+                    if ($status !== false) {
+                        $getsearch = $manage->selective_statussearch($status);
+                    }
+                    break;
             }
-            break;
-        case "searchOrd_userid":
-            $user = autocheckPOST("user_id");
-            if ($user !== false && $user !== "") {
-                $getsearch = $manage->selective_ordersearch($user, true);
-            }
-            break;
-        case "searchOrd_status":
-            $status = autocheckPOST("order_status");
-            if ($status !== false) {
-                $getsearch = $manage->selective_statussearch($status);
-            }
-            break;
+        }
+        if(isset($_POST["order_id"])){
+            $getorder = $manage->get_order($_POST['order_id']);
+        }
     }
-    if(isset($_POST["order_id"])&&$_SERVER["REQUEST_METHOD"]=="POST"){
-        $getorder = $manage->get_order($_POST['order_id']);
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -92,14 +95,26 @@ $getsearch = '';
             <br>
         </form>
     </div>
-
-    <div>
-        <form action="../admin/dashboard.php" method="post">
-            <input type="number" id="order_id" value="<?= $getorder["order_id"]?>" disabled>
-            <input type="number" id="user_id" value="<?= $getorder["user_id"]?>" disabled>
-            <input type="number" value="<?= $getorder["order_id"]?>" disabled>
-        </form>
-    </div>
+    <br><br>
+    <?php if($getorder): ?>
+        <div>
+            <form action="../admin/dashboard.php" method="post">
+                <label for="order_id">Order ID</label><br>
+                <input type="number" id="order_id" value="<?= $getorder["order_id"]?>" disabled>
+                <br><label for="user_id">User ID</label><br><br>
+                <input type="number" id="user_id" value="<?= $getorder["user_id"]?>" disabled>
+                <br><label for="paymentMeth">Payment Method</label><br>
+                <input type="text" id="paymentMeth"name= "new_payment_method" value="<?= $getorder["payment_method"]?>">
+                <br><label for="paymentStat">Payment Status</label><br>
+                <input type="number" id="paymentStat"name= "new_payment_status" value="<?= $getorder["payment_status"]?>">
+                <br><label for="orderStat">Order Status</label><br>
+                <input type="number" id="orderStat"name= "new_order_status" value="<?= $getorder["order_status"]?>">
+                
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </form>
+        </div>
+    <?php endif; ?>
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
         <br>
         <table>

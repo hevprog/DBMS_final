@@ -96,7 +96,7 @@ class manage extends Database{
     function get_order($order_id){
         try{   
             $sql = "SELECT order_id, user_id, order_status,
-            payment_method, payement_status
+            payment_method, payment_status
             FROM orders WHERE order_id = :order_id;";
             
             $stmt = parent::connect()->prepare($sql);
