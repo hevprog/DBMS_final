@@ -11,6 +11,7 @@ if (isset($_GET["back"]) && $_GET["back"] == 1) {
 $manage = new manage();
 $orders = $manage->get_all_orders();
 $dashboard = $_SERVER['PHP_SELF'];
+$getsearch = '';
 ?>
 <?php
     if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["order_mode"])){
@@ -66,6 +67,7 @@ $dashboard = $_SERVER['PHP_SELF'];
         <br>
     </form>
     <form action="<?= $dashboard ?>" method="post">
+        <input type="hidden" name="order_mode" value="searchOrd_status">
         <br>Search by order status<br>
 
         <input type="radio" id="status_pending" name="order_status" value="pending">
@@ -83,20 +85,24 @@ $dashboard = $_SERVER['PHP_SELF'];
         <input type="radio" id="status_success" name="order_status" value="success">
         <label for="status_success">Success</label>
         <button type="reset">Reset</button>
-        <br><button type="submit">Search Order</button>
+        <button type="submit">Search Order</button>
         <br>
     </form>
+   
     <table>
+        <form>
         <tr>
             <th>Order ID</th>
             <th>User ID</th>
             <th>Order status</th>
             <th>Payment method</th>
             <th>Payment status</th>
+           
         </tr>
             <?php
                 if($getsearch){
                     foreach($getsearch as $column){
+                        echo " <input type=checkbox id=col_".$column["order_id"]." name = order_id value=".$column['order_id'].">";
                         echo "<td>{$column['order_id']}</td>";
                         echo "<td>{$column['user_id']}</td>";
                         echo "<td>".htmlspecialchars($column['order_status'])."</td>";
@@ -105,13 +111,13 @@ $dashboard = $_SERVER['PHP_SELF'];
                     }
                 }
             ?>
-        <tr>
-            
-        </tr>
+        </form>
     </table>
 
-
-    <h2>Show Orders Table</h2>
+    <br>
+    <br>
+    <br>
+    <h2>Display All Orders Table</h2>
     <div>
         <table>
             <tr>
