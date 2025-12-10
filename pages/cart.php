@@ -4,6 +4,8 @@
     require_once __DIR__ . "/../Classes/CartClass.php";
     require_once __DIR__ . "/../includes/functions.php";
 
+    $_SESSION['success_message'] = "Cart:";
+
     if(isset($_POST['checkout']))
     {
         if (!headers_sent()) 
@@ -11,16 +13,29 @@
             redirectToPage('checkout.php');
         } 
     }
+    elseif(isset($_POST['back']))
+    {
+        if(!headers_sent()) 
+        {
+            redirectToPage('products.php');
+        } 
+    }
 
     $cart = new Cart();
 
     if(isset($_POST['update']))
     {
-        $cart->updateQuantity($_POST['cart_id'], $_POST['new_quantity']);
+        if($cart->updateQuantity($_POST['cart_id'], $_POST['new_quantity']))
+        {
+            $_SESSION['success_message'] = "Quantity updated!";
+        }
     }
     elseif(isset($_POST['remove']))
     {
-        $cart->removeItem($_POST['cart_id_rm']);
+        if($cart->removeItem($_POST['cart_id_rm']))
+        {
+            $_SESSION['success_message'] = "Item Deleted!";
+        }
     }
 
     $cartItems = $cart->getCartItems($_SESSION['user_id']);
@@ -35,6 +50,9 @@
 </head>
 <body>
     <div style="text-align: center;">
+        <form action="cart.php" method="post">
+            <button name="back">Back</button>
+        </form>
         <h1> THIS IS YOUR SHOPPING CART </h1>
 
         <div>
@@ -46,14 +64,20 @@
                     <th>RAM</th>
                     <th>ROM</th>
                     <th>Subtotal</th>
-                    <th>Actions</th>
+                    <th>Update</th>
+                    <th>Remove</th>
                 </tr>
 
                 <?php 
-                        
+
+                if($_SESSION['success_message'])
+                {
+                    echo $_SESSION['success_message'];
+                }
+
+                    $grandtotal = 0;
                     if($cartItems && count($cartItems) > 0)
                     { 
-                        $grandtotal = 0;
                         foreach($cartItems as $item)
                         { 
                             $subtotal = $item['price'] * $item['quantity'];
