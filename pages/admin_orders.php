@@ -61,9 +61,20 @@ $orders = $manage->get_all_orders();
         <br><button type="submit">Search Order</button>
         <br>
     </form>
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <th>Order status</th>
+            <th>Payment method</th>
+            <th>Payment status</th>
+        </tr>
+        
+        <tr>
+            
+        </tr>
+    </table>
 
 
-    
     <h2>Show Orders Table</h2>
     <div>
         <table>
