@@ -11,6 +11,7 @@ if (isset($_GET["back"]) && $_GET["back"] == 1) {
 
 $manage = new manage();
 $orders = $manage->get_all_orders();
+
 ?>
 
 
@@ -27,24 +28,20 @@ $orders = $manage->get_all_orders();
         <input type="hidden" name="back" value="1">
         <input type="submit" value="Go back to manage page">
     </form>
-    <form>
-
-        Search order ID <input type="number" name="order_id">
+    <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
+        <br>Search order ID <input type="number" name="user_id">
+        <button type="submit">Search Order</button>
         <br>
-        <table>
-            <tr>
-                <th>Order ID</th>
-                <th>User</th>
-                <th>Address</th>
-                <th>Order Date</th>
-                <th>Total Amount</th>
-                <th>Status</th>
-                <th>Payment</th>
-                <th>Items</th>
-            </tr>
-            <?php
-            ?>
-        </table>
+    </form>
+    <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
+        <br>Search by user ID <input type="number" name="order_id">
+        <button type="submit">Search Order</button>
+        <br>
+    </form>
+     <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
+        <br>Search by order status <input type="radio" name="order_id">
+        <button type="submit">Search Order</button>
+        <br>
     </form>
     <h2>Orders Table</h2>
     <div>
@@ -59,12 +56,10 @@ $orders = $manage->get_all_orders();
                 <th>Payment</th>
                 <th>Items</th>
             </tr>
-            
             <?php
                 if (!empty($orders)) {
                     foreach ($orders as $order) {
                         echo "<tr>";
-                        echo "<td><input type='checkbox' name='order_id' value='" . htmlspecialchars($order['order_id']) . "'></td>";
                         echo "<td>{$order['order_id']}</td>";
                         echo "<td>" . htmlspecialchars($order['username']) . "</td>";
                         echo "<td>" . htmlspecialchars($order['street_address']) . ", ". htmlspecialchars($order['city']). 
@@ -79,9 +74,9 @@ $orders = $manage->get_all_orders();
                 } else {
                     echo "<tr><td>No orders found.</td></tr>";
                 }
+            
             ?>
         </table>
-        <input type="submit" value ="order_delete">
     </div>
 
 </body>
