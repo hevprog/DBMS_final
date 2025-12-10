@@ -24,12 +24,14 @@ $orders = $manage->get_all_orders();
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
 <body>
+    
     <form method="get" action="<?= $_SERVER["PHP_SELF"] ?>">
         <input type="hidden" name="back" value="1">
         <input type="submit" value="Go back to manage page">
     </form>
+    <h3>Search order</h3>
     <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
-        <br>Search order ID <input type="number" name="user_id">
+        <br>Search by order ID <input type="number" name="user_id">
         <button type="submit">Search Order</button>
         <br>
     </form>
@@ -38,12 +40,31 @@ $orders = $manage->get_all_orders();
         <button type="submit">Search Order</button>
         <br>
     </form>
-     <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
-        <br>Search by order status <input type="radio" name="order_id">
-        <button type="submit">Search Order</button>
+    <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
+        <br>Search by order status<br>
+
+        <input type="radio" id="status_pending" name="order_status" value="pending">
+        <label for="status_pending">Pending</label>
+
+        <input type="radio" id="status_delivery" name="order_status" value="delivery">
+        <label for="status_delivery">Delivery</label>
+
+        <input type="radio" id="status_cancelled" name="order_status" value="cancelled">
+        <label for="status_cancelled">Cancelled</label>
+
+        <input type="radio" id="status_returned" name="order_status" value="returned">
+        <label for="status_returned">Returned</label>
+
+        <input type="radio" id="status_success" name="order_status" value="success">
+        <label for="status_success">Success</label>
+        <button type="reset">Reset</button>
+        <br><button type="submit">Search Order</button>
         <br>
     </form>
-    <h2>Orders Table</h2>
+
+
+    
+    <h2>Show Orders Table</h2>
     <div>
         <table>
             <tr>
