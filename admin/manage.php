@@ -92,5 +92,21 @@
         return [];
     }
     }
+    
+    function get_order($order_id){
+        try{   
+            $sql = "SELECT order_id, user_id, address_id, order_status,
+            payment_method, payement_status
+            FROM orders WHERE order_id = :order_id;";
+            
+            $stmt = parent::connect()->prepare($sql);
+            $stmt->bindValue(":product_id",$order_id,PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }catch(PDOException $e){
+            return false;
+        }
+    }
+
 }
 ?>
