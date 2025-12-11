@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once __DIR__ . "/../config/databaseTemplate.php";
+    require_once __DIR__ . "/../config/database.php";
     require_once __DIR__ . "/../Classes/ProfileClass.php";
     require_once __DIR__ . "/../Classes/AddressClass.php";
     require_once __DIR__ . "/../includes/functions.php";
@@ -11,21 +11,21 @@ checkSession();
     $userDetails = $profileManager->getUserDetails();
 
     // Default values if fetch fails or uses mock data
-    if (!$userDetails) {
-        $userDetails = [
-            'username' => 'Guest User',
-            'first_name' => 'N/A',
-            'last_name' => 'N/A',
-            'email' => 'N/A',
-            'phone' => 'N/A',
-            'province' => 'N/A',
-            'city' => 'N/A',
-            'street_address' => 'N/A',
-            'unit_num' => 'N/A',
-            'postal_code' => 'N/A',
-            'is_default' => false,
-        ];
-    }
+    // if (!$userDetails) {
+    //     $userDetails = [
+    //         'username' => 'Guest User',
+    //         'first_name' => 'N/A',
+    //         'last_name' => 'N/A',
+    //         'email' => 'N/A',
+    //         'phone' => 'N/A',
+    //         'province' => 'N/A',
+    //         'city' => 'N/A',
+    //         'street_address' => 'N/A',
+    //         'unit_num' => 'N/A',
+    //         'postal_code' => 'N/A',
+    //         'is_default' => false,
+    //     ];
+    // }
     
     function e($value) {
         return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
@@ -49,20 +49,18 @@ checkSession();
     </div>
 
     <div id="profile_container">
-        <!-- LEFT SIDE: Personal Details -->
         <div id="profile_left">
 
             <div id="profile_pic_container">
                 <div id="profile_pic"></div>
             </div>
-
+        <form action="../includes/updateProfile.php" method="post">
             <div id="profile_username_container">
                 <div id="profile_username"><?= e($userDetails['username']) ?></div>
             </div>
 
-            <!-- PERSONAL DETAILS -->
+
             <div id="personal_details_title">PERSONAL DETAILS:</div>
-        <form>
             <div id="input_firstname" class="input_box">
                 <label for="firstname">First Name</label>
                 <input type="text" id="firstname" value="<?= e($userDetails['first_name']) ?>" placeholder="FIRST NAME">
@@ -72,9 +70,10 @@ checkSession();
                 <input type="text" id="lastname" value="<?= e($userDetails['last_name']) ?>" placeholder="LAST NAME">
             </div>
             
-            <a href="change_password.php" style="text-decoration: none;">
-                <div id="btn_change_password" class="input_box">Change PASSWORD (button)</div>
-            </a>
+            <div class="input_box">
+                <label for="password">Last Name</label>
+                <input type="password" id="password" value="" placeholder="PASSWORD">
+            </div>
             
             <div id="input_email" class="input_box">
                 <label for="email">Email</label>
@@ -87,7 +86,6 @@ checkSession();
 
         </div>
 
-        <!-- RIGHT SIDE: Address Details -->
         <div id="profile_right">
 
             <div id="address_details_title">ADDRESS DETAILS:</div>
@@ -124,7 +122,7 @@ checkSession();
              <div class="input_box" style="margin-top: 50px;">
                 <button type="submit" style="background-color: var(--color-light-text); color: var(--color-maroon); font-weight: 700; border: 2px solid var(--color-light-text);">SAVE CHANGES</button>
             </div>
-
+        </form>
         </div>
 
     </div>
