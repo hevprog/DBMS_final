@@ -16,8 +16,7 @@
         redirectToPage('products.php');
         exit();
     }
-
-    $cart = new Cart();
+    $message = "Cart:";
 
     if(isset($_POST['update']))
     {
@@ -44,7 +43,7 @@
     }
     include('../includes/navbar.html');
 
-    $message = "Cart:";
+    $cart = new Cart();
     
     $cartItems = $cart->getCartItems($_SESSION['user_id']);
 ?>
