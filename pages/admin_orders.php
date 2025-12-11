@@ -44,6 +44,7 @@ $getorder =null;
         }
         if(isset($_POST["DELETE"])){
             $manage->delete_order($getorder['order_id']);
+            echo "<p id='updateStatTrue'>Selected order deleted</p>";
         }
     }
 ?>
@@ -147,7 +148,7 @@ $getorder =null;
                             echo "</tr>";
                         }
                     }else{
-                        echo "<td>Blank search</td>";
+                        echo "<td id='updateStatFalse'>Blank search or not found</td>";
                     }
                 ?>
             
@@ -188,7 +189,7 @@ $getorder =null;
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td>No orders found.</td></tr>";
+                    echo "<tr><td id=updateStatFalse>No orders found.</td></tr>";
                 }
             
             ?>
@@ -197,3 +198,15 @@ $getorder =null;
 
 </body>
 </html>
+
+<style>
+    table, th, td {
+    border: 1px solid black;
+    }
+    #updateStatFalse{
+        background-color: rgba(255, 0, 0, 0.3);
+    }
+    #updateStatTrue{
+        background-color: rgba(0, 255, 0, 0.3);
+    }
+</style>
