@@ -1,3 +1,114 @@
+<style>
+    .site-footer {
+background-color: #e6e6e6;
+color: #333;
+padding: 60px 20px 20px;
+}
+
+.footer-features {
+display: flex;
+justify-content: space-around;
+max-width: 1200px;
+margin: 0 auto 60px;
+border-bottom: 1px solid #ccc;
+padding-bottom: 40px;
+text-align: center;
+}
+
+.footer-feat-item {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+font-weight: bold;
+font-size: 0.9rem;
+}
+
+.footer-feat-item i {
+font-size: 2rem;
+color: #333;
+}
+
+.footer-links {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+max-width: 1200px;
+margin: 0 auto 40px;
+}
+
+.footer-column h4 {
+margin-bottom: 20px;
+font-size: 1rem;
+color: #000;
+}
+
+.footer-column ul {
+list-style: none;
+}
+
+.footer-column ul li {
+margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+color: #666;
+text-decoration: none;
+font-size: 0.85rem;
+}
+
+.footer-column ul li a:hover {
+text-decoration: underline;
+}
+
+.copyright-text {
+text-align: center;
+font-size: 0.75rem;
+color: #888;
+margin-top: 40px;
+}
+
+/* --- Responsive Tweaks --- */
+@media (max-width: 900px) {
+.hero-content {
+grid-template-columns: 1fr;
+gap: 40px;
+text-align: center;
+}
+
+.hero-features {
+order: 2;
+text-align: center;
+padding: 0;
+}
+
+.hero-phones {
+order: 1;
+}
+
+.hero-pricing {
+order: 3;
+text-align: center;
+padding: 0;
+align-items: center;
+}
+
+.cards-container {
+grid-template-columns: 1fr;
+}
+
+.footer-features {
+flex-wrap: wrap;
+gap: 20px;
+}
+
+.footer-links {
+grid-template-columns: 1fr 1fr;
+gap: 30px;
+}
+}
+
+</style>
+
 <footer class="site-footer">
         <div class="footer-features">
             <div class="footer-feat-item">
