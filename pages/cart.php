@@ -4,24 +4,21 @@
     require_once __DIR__ . "/../Classes/CartClass.php";
     require_once __DIR__ . "/../includes/functions.php";
 
-    include('../includes/navbar.html');
+   checkSession();
 
-    if(!isset($_SESSION['user_id']))
-    {
-        redirectToPage("../index.php");
-        session_destroy();
-        exit();
-    }
+    include('../includes/navbar.html');
 
     $message = "Cart:";
 
     if(isset($_POST['checkout']))
     {
         redirectToPage('checkout.php');
+        exit();
     }
     elseif(isset($_POST['back']))
     {
         redirectToPage('products.php');
+        exit();
     }
 
     $cart = new Cart();
@@ -158,9 +155,9 @@
             <!-- Checkout Button -->
             <?php if ($cartItems && count($cartItems) > 0) { ?>
                 <form action="cart.php" method="post">
-                    <button type="submit" name="checkout" class="btn-checkout">
+                   <a href="checkout.php"> <button type="submit" name="checkout" class="btn-checkout">
                         Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
-                    </button>
+                    </button> </a>
                 </form>
             <?php } ?>
         </div>

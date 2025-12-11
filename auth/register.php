@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . "/../Classes/RegisterClass.php";
 require_once __DIR__ . "/../includes/functions.php";
@@ -56,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
 </head>
 <body>
     <div class="register-container">
-             <button type="button" class="btn-primary"> <a href="../index.php" class="btn-primary">Back to Log-in</a></button>
+            <a href="../index.php" class="btn-primary"> <button type="button" class="btn-primary"> Back to Log-in</button></a>
             <!-- temporary back button -->
         <div class="logo-section">
             <img src="assets/images/Manzanas logo.jpeg" alt="M" class="logo-icon">
