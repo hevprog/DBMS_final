@@ -40,7 +40,7 @@
 </head>
 <body>
     <div>
-        <form method="post" action=<?= $_SERVER['PHP_SELF'] ?>>
+        <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
             <input type="hidden" name="log-out" value="1">
             <button type="submit" value="Log out">Logout</button>
         </form>
