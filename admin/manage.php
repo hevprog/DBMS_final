@@ -1,6 +1,4 @@
-
 <?php
-//For the CRUD operations para tat products, orders, etc
 class manage extends Database{
     
     
