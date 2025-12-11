@@ -70,6 +70,9 @@
         <form action="admin_orders.php">
             <button type="submit">Go to Manage orders</button>
         </form>
+        <form action="admin_users.php">
+            <br><button type="submit">Go to Manage users</button>
+        </form>
     </div>
     <br>
     <div>
