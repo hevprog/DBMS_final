@@ -2,11 +2,11 @@
 class manage extends Database{
     
     
-    function add_product($product_name, $category_id, $class_id,$price,$stock,$ROM,$RAM){
+    function add_product($product_name, $category_id, $class_id,$price,$stock,$ROM,$RAM,$descp){
         try{
             $sql = "insert into products(name,category_id,
-            class_id,price,stock,ROM,RAM) values( :name, :category_id, :class_id,
-            :price, :stock, :ROM, :RAM);";
+            class_id,price,stock,ROM,RAM, product_description) values( :name, :category_id, :class_id,
+            :price, :stock, :ROM, :RAM, :descp);";
             
             $stmt = parent::connect()->prepare($sql);
             $stmt->bindValue( ":name",$product_name,PDO::PARAM_STR);
@@ -19,6 +19,7 @@ class manage extends Database{
             $stmt->bindParam(":ROM", $ROM, PDO::PARAM_INT);
             $stmt->bindParam(":RAM", $RAM, PDO::PARAM_INT);
 
+            $stmt->bindValue( ":descp",$descp,PDO::PARAM_STR);
             return $stmt->execute();
         }catch(PDOException $e){
             return false;
@@ -71,17 +72,20 @@ class manage extends Database{
         }
    }
 
-   function change_status($order_id, $new_status){
-    try {
-        $sql = "UPDATE orders SET order_status = :status WHERE order_id = :order_id;";
-        $stmt = parent::connect()->prepare($sql);
-        $stmt->bindValue(":status", $new_status, PDO::PARAM_STR);
-        $stmt->bindValue(":order_id", $order_id, PDO::PARAM_INT);
-        return $stmt->execute();
-    } catch(PDOException $e) {
-        return false;
+   function update_order($order_id, $new_status, $new_payment_method, $new_payment_status) {
+        try {
+            $sql = "UPDATE orders SET order_status = :status, payment_method = :pm, payment_status = :ps 
+                    WHERE order_id = :order_id";
+            $stmt = parent::connect()->prepare($sql);
+            $stmt->bindValue(":status", $new_status, PDO::PARAM_STR);
+            $stmt->bindValue(":pm", $new_payment_method, PDO::PARAM_STR);
+            $stmt->bindValue(":ps", $new_payment_status, PDO::PARAM_STR);
+            $stmt->bindValue(":order_id", $order_id, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return false;
+        }
     }
-}
 
    function get_all_orders() {
         try {

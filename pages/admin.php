@@ -89,6 +89,7 @@
             stock: <input type="number" name="stock"><br>
             RAM: <input type="number" name="RAM"><br>
             ROM: <input type="number" name="ROM"><br>
+            Product Description: <input type="text" name="descp"><br>
             <button type="submit"><?php echo $mode_label;?></button>
         </form>
         <br>

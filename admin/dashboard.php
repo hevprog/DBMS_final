@@ -1,13 +1,13 @@
 <?php
+    require_once __DIR__. "/../config/database.php";
+    require_once __DIR__. "/manage.php";
+    require_once __DIR__. "/../includes/functions.php";
     if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["mode"])){
-        require_once __DIR__. "/../config/database.php";
-        require_once __DIR__. "/manage.php";
-        require_once __DIR__. "/../includes/functions.php";
+       
         $manage = new manage();
         if(isset($_POST["mode"])){
             $mode = $_POST["mode"];
         }
-        
 
         $product_id = (isset($_POST["product_id"]))? $_POST["product_id"]:-1;
         $product_name = (isset($_POST["Product_name"]))?$_POST["Product_name"]:"";
@@ -15,14 +15,14 @@
         $stock = (isset($_POST["stock"]))?$_POST["stock"]:0;
         $RAM = (isset($_POST["RAM"]))?$_POST["RAM"]:0;
         $ROM = (isset($_POST["ROM"]))?$_POST["ROM"]:0;
-
+        $descp =(isset($_POST["descp"]))? $_POST["descp"]:"";
         switch ($mode) {
 
         case "INSERT":
             if($_POST["is_pressed_insert"])
             {
                 if($manage->add_product($product_name,$_POST["category"],$_POST["class"]
-                    ,$price,$stock,$ROM,$RAM)){
+                    ,$price,$stock,$ROM,$RAM,$descp)){
                     redirectToPage("/../pages/admin.php?inserted=1");
                 }else{
                     redirectToPage("/../pages/admin.php?inserted=0");
@@ -65,5 +65,23 @@
             break;
 
     }
-
-}
+    }
+    if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["update_order"])){
+        $mode = $_POST["update_order"];
+        $manage = new manage();
+        switch($mode){
+            case "UPDATE":
+                $order_id = $_POST["order_id"];
+                $new_status = $_POST["new_order_status"];
+                $new_payment_method = $_POST["new_payment_method"];
+                $new_payment_status = $_POST["new_payment_status"];
+                $updated = $manage->update_order($order_id, $new_status, $new_payment_method, $new_payment_status);
+                if ($updated) {
+                    redirectToPage("../pages/admin_orders.php?updated=1&order_id=$order_id");
+                } else {
+                    redirectToPage("../pages/admin_orders.php?updated=0&order_id=$order_id");
+                }
+                
+                break;
+        }
+    }
