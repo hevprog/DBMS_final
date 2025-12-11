@@ -22,20 +22,26 @@ try {
     
     $fetchedProducts = $productsInstance->getProductsbyCategory($categoryId, 'name', 'ASC');
 
-   
-    $visualTemplateMap = [
-    ];
-    
     if ($fetchedProducts && is_array($fetchedProducts)) {
         foreach ($fetchedProducts as $dbProduct) {
-            $visualData = $visualTemplateMap[$dbProduct['name']] ?? null;
+            $description = $dbProduct['product_description'] ?? 'View details for specifications.';
+            
+            $specsArray = [];
+            if (!empty($description)) {
+                $specsArray = explode('<br>', $description);
+            }
             
             $products[] = [
                 'product_id' => $dbProduct['product_id'],
                 'name' => $dbProduct['name'],
-                'stock' => $dbProduct['stock'] ?? 1, 
-                'img_url' => $visualData['img_url'] ?? '../assets/images/500x500Mobile-placeholder.png', 
-                'product_description' => $visualData['product_description'] ?? ['View details for specifications.'],
+                'stock' => $dbProduct['stock'] ?? 1,
+                'price' => $dbProduct['price'] ?? 0,
+                'img_url' => $dbProduct['img_url'] ?? '../assets/images/500x500Mobile-placeholder.png',
+                'product_description' => $description,
+                'specs_array' => $specsArray,
+                'ROM' => $dbProduct['ROM'] ?? 'N/A',
+                'RAM' => $dbProduct['RAM'] ?? 'N/A',
+                'class_name' => $dbProduct['class_name'] ?? ''
             ];
         }
     }
@@ -53,7 +59,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manzanas M-phone 17 Series</title>
     <link rel="stylesheet" href="../pages/phoneStyles.css">
-
+    
     <style>
         .buy-form {
             margin-top: 20px;
@@ -73,6 +79,26 @@ try {
 
         .buy-form button {
             flex: 1; 
+        }
+        
+        .product-info {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .price-tag {
+            font-size: 20px;
+            font-weight: bold;
+            color: #0071e3;
+            margin-bottom: 5px;
+        }
+        
+        .storage-info {
+            color: #666;
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -96,7 +122,6 @@ try {
         </div>
         
         <div class="hero-content">
-
             <div class="hero-features">
                 <h2>Power Redefined</h2>
                 <div class="feature-item">Titanium frame 2.0</div>
@@ -112,18 +137,27 @@ try {
             </div>
 
             <div class="hero-pricing">
-                <div class="price-item">
-                    <div class="price-tag">$799</div>
-                    <div class="price-label">Basic Model</div>
-                </div>
-                <div class="price-item">
-                    <div class="price-tag">$999</div>
-                    <div class="price-label">Mid Level</div>
-                </div>
-                <div class="price-item">
-                    <div class="price-tag">$1499</div>
-                    <div class="price-label">Flagship</div>
-                </div>
+                <?php if (!empty($products)): ?>
+                    <?php foreach(array_slice($products, 0, 3) as $product): ?>
+                        <div class="price-item">
+                            <div class="price-tag">₱<?= number_format($product['price'], 0) ?></div>
+                            <div class="price-label"><?= htmlspecialchars($product['name']) ?></div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="price-item">
+                        <div class="price-tag">$799</div>
+                        <div class="price-label">Basic Model</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="price-tag">$999</div>
+                        <div class="price-label">Mid Level</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="price-tag">$1499</div>
+                        <div class="price-label">Flagship</div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </section>
@@ -138,34 +172,50 @@ try {
         </div>
 
         <div class="cards-container">
-            
             <?php 
                 if (count($products) > 0) {
                     foreach($products as $product): ?>
                         <div class="product-card">
                             <div class="card-image-placeholder">
-                                <img src="<?= $product['img_url'] ?>" alt="<?= $product['name'] ?>">
+                                <img src="<?= htmlspecialchars($product['img_url']) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
                             </div>
-                            <h3 class="product-title"><?= $product['name'] ?></h3>
+                            <h3 class="product-title"><?= htmlspecialchars($product['name']) ?></h3>
                             
                             <div class="specs-list">
-                                <div class="spec-item">
-                                    <?= $product['product_description'] ?>
+                                <?php if (!empty($product['specs_array'])): ?>
+                                    <?php foreach($product['specs_array'] as $spec): ?>
+                                        <div class="spec-item">
+                                            <?= htmlspecialchars(trim($spec)) ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <div class="spec-item">
+                                        <?= nl2br(htmlspecialchars($product['product_description'])) ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            
+                            <div class="product-info">
+                                <div class="price-tag">₱<?= number_format($product['price'], 2) ?></div>
+                                <div class="storage-info">
+                                    <?= $product['ROM'] ?>GB ROM | <?= $product['RAM'] ?>GB RAM
+                                </div>
+                                <div class="stock-info">
+                                    Stock: <?= $product['stock'] ?>
                                 </div>
                             </div>
 
-                        <form action="addToCart.php" method="post" class="buy-form">
-                            <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
-                            <input type="number" name="quantity" value="1" min="1" max="<?= $product['stock'] ?>" class="quantity-input" title="Quantity">
-                            <button type="submit" name="add_to_cart" class="btn-primary">Add to Cart</button>
-                        </form>
-                    </div>
-                <?php endforeach; 
-            } else {
-                echo '<div style="width: 100%; text-align: center; padding: 20px; font-size: 1.2em;">No phones are currently available. Please check back later!</div>';
-            }
+                            <form action="addToCart.php" method="post" class="buy-form">
+                                <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                <input type="number" name="quantity" value="1" min="1" max="<?= $product['stock'] ?>" class="quantity-input" title="Quantity">
+                                <button type="submit" name="add_to_cart" class="btn-primary">Add to Cart</button>
+                            </form>
+                        </div>
+                    <?php endforeach; 
+                } else {
+                    echo '<div style="width: 100%; text-align: center; padding: 20px; font-size: 1.2em;">No phones are currently available. Please check back later!</div>';
+                }
             ?>
-
         </div>
     </section>
 
@@ -177,7 +227,6 @@ try {
         </div>
     </section>
 
-<?php include('../includes/footer.html'); ?>
-
+    <?php include('../includes/footer.html'); ?>
 </body>
 </html>

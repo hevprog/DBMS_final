@@ -211,7 +211,5 @@ include('../includes/navbar.html');
         </div>
     </section>
 
-<?= include('../includes/footer.html') ?>
-
 </body>
 </html>
