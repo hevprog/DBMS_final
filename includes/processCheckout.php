@@ -6,6 +6,8 @@ require_once "../Classes/OrderClass.php";
 require_once "../Classes/ProductClass.php";
 require_once "functions.php";
 
+checkSession();
+
 $userId = $_SESSION['user_id'];
 $addressId = filter_input(INPUT_POST, 'address_id', FILTER_VALIDATE_INT);
 $paymentMethod = htmlspecialchars($_POST['method_id']);
