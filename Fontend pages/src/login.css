@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+
+
+.center{
+    @apply flex justify-center
+}
+.font{
+    @apply font-[verdana]
+}
+
+
+.buttons{
+    @apply bg-[#800000] p-5  w-70 rounded-3xl text-white font-bold 
+}
+
+
+

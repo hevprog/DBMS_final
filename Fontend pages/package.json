@@ -1,0 +1,16 @@
+{
+  "name": "fontend-pages",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tailwindcss -i ./src/register.css -o ./dist/registerTW.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^4.1.17"
+  },
+  "description": ""
+}
