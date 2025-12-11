@@ -15,14 +15,14 @@
         $stock = (isset($_POST["stock"]))?$_POST["stock"]:0;
         $RAM = (isset($_POST["RAM"]))?$_POST["RAM"]:0;
         $ROM = (isset($_POST["ROM"]))?$_POST["ROM"]:0;
-
+        $descp =(isset($_POST["descp"]))? $_POST["descp"]:"";
         switch ($mode) {
 
         case "INSERT":
             if($_POST["is_pressed_insert"])
             {
                 if($manage->add_product($product_name,$_POST["category"],$_POST["class"]
-                    ,$price,$stock,$ROM,$RAM)){
+                    ,$price,$stock,$ROM,$RAM,$descp)){
                     redirectToPage("/../pages/admin.php?inserted=1");
                 }else{
                     redirectToPage("/../pages/admin.php?inserted=0");
