@@ -82,6 +82,9 @@
     <title>Manager</title>
     
 </head>
+<header>
+    <img src="../assets/images/Admin Img.jpg" loading="lazy">
+</header>
 <body>
 
     <!-- Logout Button -->

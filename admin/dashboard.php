@@ -92,11 +92,7 @@
                 $new_status = $_POST["status"];
                 $user_id = $_POST["user_id"];
                 $manage->update_user_status($user_id,$new_status);
-                break;
-            case "DELETE":
-                $new_status = $_POST["status"];
-                $user_id = $_POST["user_id"];
-                $manage->update_user_status($user_id,$new_status);
+                redirectToPage("../pages/admin_users.php");
                 break;
         }
     }

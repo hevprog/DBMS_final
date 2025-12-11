@@ -19,6 +19,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manager</title>
 </head>
+<header>
+    <img src="../assets/images/Admin Img.jpg" loading="lazy">
+</header>
 <body>
     <div>
         <form method="post" action="../auth/logout.php">
@@ -31,14 +34,6 @@
         </form>
     </div>
     <div>
-        <form action="../admin/dashboard.php" method="post">
-            <p>Delete a user</p>
-            <input type="hidden" name="user_mode" value="DELETE">
-            <input type="number" name="user_id" id="userIDlabel">
-            <label for="userIDlabel">Enter user_ID</label>
-            <input type="submit" value="DELETE user">
-            <br>
-        </form>
         <form action="../admin/dashboard.php" method="post">
             <p>Update user status</p>
             <input type="hidden" name="user_mode" value="UPDATE">
