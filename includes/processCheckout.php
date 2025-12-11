@@ -6,11 +6,7 @@ require_once "../Classes/OrderClass.php";
 require_once "../Classes/ProductClass.php";
 require_once "../includes/functions.php";
 
-if(!isset($_SESSION['user_id'])) 
-{
-    redirectToPage("../index.php");
-    exit();
-}
+checkSession();
 
 $userId = $_SESSION['user_id'];
 $addressId = filter_input(INPUT_POST, 'address_id', FILTER_VALIDATE_INT);

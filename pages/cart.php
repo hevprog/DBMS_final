@@ -4,12 +4,8 @@
     require_once __DIR__ . "/../Classes/CartClass.php";
     require_once __DIR__ . "/../includes/functions.php";
 
-    if(!isset($_SESSION['user_id']))
-    {
-        redirectToPage("../index.php");
-        session_destroy();
-        exit();
-    }
+   checkSession();
+
     include('../includes/navbar.html');
 
     $message = "Cart:";
