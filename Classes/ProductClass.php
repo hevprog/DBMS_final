@@ -27,4 +27,30 @@ class Products extends Database //this is a product, which can be used by both a
             return null;
         }
     }
+
+    public function getAllProducts($sort_by = null, $order = "ASC")
+{
+    try
+    {               
+        $sql = "SELECT p.*, c.category_name, cl.class_name 
+                FROM products p 
+                JOIN category c ON p.category_id = c.id
+                JOIN class cl ON p.class_id = cl.id";
+        
+        if($sort_by)
+        {
+            $sql .= " ORDER BY " . $sort_by . " " . $order;
+        }
+        $stmt = parent::connect()->prepare($sql);
+        $stmt->execute();
+        
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $products;
+    }
+    catch(PDOException $e)
+    {
+        echo "ERROR " . $e->getMessage();
+        return null;
+    }
+}
 }
