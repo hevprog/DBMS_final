@@ -591,6 +591,13 @@
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
   }
+  .hover\:cursor-pointer {
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+      }
+    }
+  }
   .hover\:bg-black {
     &:hover {
       @media (hover: hover) {
