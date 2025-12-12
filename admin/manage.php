@@ -238,4 +238,27 @@ function selective_usersearch($term, $isIdSearch = true) {
         return false;
     }
 }
+
+function insert_user($username, $email, $password, $status = 'customer') 
+{
+    try 
+    {
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        
+        $sql = "INSERT INTO users (username, email, password_hash, status) 
+                VALUES (:username, :email, :password_hash, :status)";
+        
+        $stmt = parent::connect()->prepare($sql);
+        $stmt->bindValue(":username", $username, PDO::PARAM_STR);
+        $stmt->bindValue(":email", $email, PDO::PARAM_STR);
+        $stmt->bindValue(":password_hash", $password_hash, PDO::PARAM_STR);
+        $stmt->bindValue(":status", $status, PDO::PARAM_STR);
+        
+        return $stmt->execute();
+    } catch(PDOException $e) 
+    {
+        error_log($e->getMessage());
+        return [];
+    }
+}
 }
