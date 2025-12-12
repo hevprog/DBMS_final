@@ -37,7 +37,9 @@ include('../includes/navbar.html');
 
         <div class="flex flex-col items-center mb-10">
             <div id="profile_pic_container" class="w-32 h-32 bg-gray-300 rounded-full overflow-hidden mb-3">
-                <div id="profile_pic" class="w-full h-full bg-gray-500"></div>
+                <div id="profile_pic" class="w-full h-full bg-gray-500">
+                    <img src="../assets/images/default-profile.jpg" alt="Profile">
+                </div>
             </div>
 
             <div id="profile_username_container" class="text-xl font-semibold mb-4">
