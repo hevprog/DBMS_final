@@ -142,7 +142,7 @@ try {
 
             <div class="hero-phones">
                 <div class="phone-stack">
-                    <img src="../assets/Phones/Iphone_series.jpg" alt="M-phone 17 Stack" class="phone-stack-img">
+                    <img src="../assets/Phones/Iphone_series.jpg" alt="M-phone 17 Stack" class="phone-stack-img" loading="eager">
                 </div>
             </div>
 
@@ -187,7 +187,7 @@ try {
                     foreach($products as $product): ?>
                         <div class="product-card">
                             <div class="card-image-placeholder">
-                                <img src="<?= htmlspecialchars($product['img_url']) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                                <img src="<?= htmlspecialchars($product['img_url']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" loading="eager">
                             </div>
                             <h3 class="product-title"><?= htmlspecialchars($product['name']) ?></h3>
                             
