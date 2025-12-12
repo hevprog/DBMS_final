@@ -10,7 +10,7 @@ checkSession();
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') 
 {
     $_SESSION['error_message'] = "Must be accessed through POST";
-    redirectToPage("profile.php");
+    redirectToPage("../pages/profile.php");
     exit();
 }
 
@@ -79,7 +79,7 @@ if ($anyAddressFieldFilled) {
     if (!empty($missingFields)) 
     {
         $_SESSION['error_message'] = "Cannot update address. Missing required fields: " . implode(', ', $missingFields);
-        redirectToPage("profile.php");
+        redirectToPage("../pages/profile.php");
         exit();
     }
 
@@ -100,7 +100,7 @@ if ($anyAddressFieldFilled) {
     else 
     {
         $_SESSION['error_message'] = "Failed to update address. Please try again.";
-        redirectToPage("profile.php");
+        redirectToPage("../pages/profile.php");
         exit();
     }
 }
@@ -114,5 +114,5 @@ else
     $_SESSION['error_message'] = "No changes detected. Please fill in at least one field to update.";
 }
 
-redirectToPage("profile.php");
+redirectToPage("../pages/profile.php");
 exit();
