@@ -7,17 +7,6 @@ require_once __DIR__."/../includes/functions.php";
 
 checkAdmin();
 
-$feedback = "";
-if (isset($_GET['inserted']) && $_GET['inserted'] == 1) {
-    $feedback = "<p id='updateStatTrue'>Product successfully inserted!</p>";
-} elseif (isset($_GET['updated']) && $_GET['updated'] == 1) {
-    $feedback = "<p id='updateStatTrue'>Product successfully updated!</p>";
-} elseif (isset($_GET['deleteStat'])) {
-    $feedback = ($_GET['deleteStat'] == 1) 
-        ? "<p id='updateStatTrue'>Product successfully deleted!</p>" 
-        : "<p id='updateStatFalse'>Failed to delete product.</p>";
-}
-
 $isUpdate = isset($_GET["update"]) && $_GET["update"] == 1;
 $mode_label = $isUpdate ? "UPDATE" : "INSERT";
 $next_mode = $isUpdate ? 0 : 1;
